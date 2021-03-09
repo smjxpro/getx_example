@@ -1,20 +1,21 @@
 import 'package:get/get.dart';
 import 'package:getx_example/app/modules/home/domain/entities/cases_entity.dart';
-import 'package:getx_example/app/modules/home/domain/repositories/i_home_repository.dart';
+import 'package:getx_example/app/modules/home/domain/use_cases/get_cases_use_case.dart';
 
-class HomeController extends SuperController<Cases> {
-  final IHomeRepository homeRepository;
+class HomeController extends SuperController<Cases?> {
+  final GetCasesUseCase getCasesUseCase;
 
-  HomeController(this.homeRepository);
+  HomeController(this.getCasesUseCase);
 
   @override
   void onInit() {
     super.onInit();
-    homeRepository.getCases().then((value) {
-      change(value, status: RxStatus.success());
-    }, onError: (error) {
-      change(null, status: RxStatus.error(error.toString()));
-    });
+
+    append(() => getCases);
+  }
+
+  Future<Cases?> getCases() {
+    return getCasesUseCase();
   }
 
   @override
