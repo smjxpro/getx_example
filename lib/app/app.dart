@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:getx_example/app/routes/app_pages.dart';
 import 'package:getx_example/app/shared/logger/logger_utils.dart';
 
 import 'lang/translation_service.dart';
+import 'navigation/app_pages.dart';
 
 class MyApp extends StatelessWidget {
   @override
